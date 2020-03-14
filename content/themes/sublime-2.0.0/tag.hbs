@@ -1,0 +1,104 @@
+{{!< default}} 
+
+<!-- Tag Header -->
+{{#tag}}
+<header class="tag-page-header {{#unless feature_image}}no-cover-image{{/unless}}" style="background-image: url({{feature_image}})">
+    <div class="overlay">
+        <div class="wrapper-1000">
+            <div class="tag-page-header__top">
+                {{!-- Site Title/Logo --}}
+                {{#if @site.logo}}
+                    <a href="{{@site.url}}">
+                        <img class="logo" alt="site logo" src="{{@site.logo}}">
+                    </a>
+                {{else}}
+                    <div class="title">
+                        <a href="{{@site.url}}">{{@site.title}}</a>
+                    </div>
+                    <p class="description">{{@site.description}}</p>
+                {{/if}}
+            </div>
+
+            <div class="tag-page-header__middle">
+                {{!-- Tag Title --}}
+                <h1 class="tag-title"># {{name}}</h1>
+
+                {{!-- Tag Description --}}
+                {{#if description}}
+                    <p class="tag-description">{{description}}</p>
+                {{else}}
+                    <p class="tag-description">
+                        A collection of {{plural ../pagination.total empty='posts' singular='% post' plural='% posts'}}
+                    </p>
+                {{/if}}
+            </div>
+
+            {{!-- Navigation --}}
+            <div class="tag-page-header__bottom">
+                <div class="tag-page-header__navigation">
+                    {{navigation}}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{{/tag}}
+
+<!-- Site Main Content -->
+<div class="site-content tag-page-content">
+    <div class="wrapper-1000 wrapper-1000--post-feed">
+        <div class="post-feed">
+            <!-- Normal posts -->
+            {{#foreach posts}}
+                {{> "post-card"}}
+            {{/foreach}}
+        </div>
+
+        <div class="load-more-posts">
+            <button role="button" class="button-type-1" onclick="loadMorePosts(event)">
+                <div>Load More</div>
+            </button>
+            <div class="lds-ripple"><div></div><div></div></div>
+            <div class="message">Reached End</div>
+        </div>
+
+        {{!-- {{pagination}} --}}
+    </div>
+</div>
+
+{{#tag}}
+{{#if @labs.subscribers}}
+    <section class="gh-subscribe" {{#if feature_image}}style="background-image: url({{feature_image}})" {{else}} style="background-image: url({{@site.cover_image}})"{{/if}}>
+        <div class="overlay">
+            <div class="wrapper-1000">
+                <div class="one">
+                    <p>Get the latest posts delivered right to your inbox.</p>
+                </div>
+
+                <div class="two">
+                {{subscribe_form placeholder="Your email address"}}
+                <span class="gh-subscribe-rss">Or subscribe <a href="http://cloud.feedly.com/#subscription/feed/{{@site.url}}/rss/">via RSS</a> with Feedly!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+{{/if}}
+{{/tag}}
+
+{{> "footer" }}
+
+{{> "floating-navigation"}}
+
+{{#contentFor "scripts"}}
+    <script type="text/javascript">
+        var current_page = "tag-view";
+
+        $(window).on("scroll", function() {
+            if ($(window).scrollTop() > $(window).height()) {
+                $(".floating-navigation").addClass("active");
+            } else {
+                $(".floating-navigation").removeClass("active");
+            }
+        });
+    </script>
+{{/contentFor}}

@@ -1,0 +1,159 @@
+.subscribe-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+    pointer-events: none;
+
+    backdrop-filter: blur(3px);
+}
+
+.subscribe-overlay:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.subscribe-overlay-content {
+    position: relative;
+    z-index: 9999;
+    margin: 0 0 5vw 0;
+    padding: 4vw;
+    color: #fff;
+    text-align: center;
+}
+
+.subscribe-overlay-logo {
+    position: fixed;
+    top: 23px;
+    left: 30px;
+    height: 30px;
+}
+
+.subscribe-overlay-title {
+    font-size: 24px;
+    line-height: 39px;
+    margin-bottom: 10px;
+    color: $color-text;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.subscribe-overlay-description {
+    font-size: 21px;
+    max-width: 600px;
+    line-height: 30px;
+    color: $color-text-lighter;
+    margin-bottom: 20px;
+}
+
+.subscribe-overlay form {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.subscribe-overlay .form-group {
+    flex-grow: 1;
+}
+
+.subscribe-overlay .subscribe-email {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border: 2px solid;
+    border-color: #f1f1f1;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    background: #f1f1f1;
+    transition: border-color 0.15s linear;
+    color: #333;
+    -webkit-appearance: none;
+}
+
+.subscribe-email:focus {
+    outline: 0;
+    border-color: gainsboro;
+}
+
+.subscribe-overlay button {
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    border: 2px solid #666;
+    border-radius: 6px;
+    margin-left: 10px;
+    color: #666;
+    background: white;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.subscribe-overlay button:active,
+.subscribe-overlay button:focus {
+    background: white;
+}
+
+.subscribe-overlay-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    cursor: pointer;
+}
+
+.subscribe-overlay-close:before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #989898;
+    opacity: 0.8;
+    transform: rotate(45deg);
+}
+
+.subscribe-overlay-close:after {
+    content: "";
+    position: absolute;
+    top: 40px;
+    right: 25px;
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: #989898;
+    opacity: 0.8;
+    transform: rotate(-45deg);
+}
+
+.subscribe-overlay-close:hover {
+    cursor: default;
+}
+
+@media(max-width: 800px){
+    .subscribe-overlay-title{
+        font-size: 22px;
+    }
+    .subscribe-overlay-description{
+        font-size: 18px;
+        line-height: 26px;
+    }
+    .subscribe-overlay .subscribe-email {
+        font-size: 14px;
+    }
+    .subscribe-overlay button{
+        font-size: 14px;
+    }
+}

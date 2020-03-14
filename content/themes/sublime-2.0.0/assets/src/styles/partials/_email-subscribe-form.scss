@@ -1,0 +1,165 @@
+.gh-subscribe {
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	.overlay {
+		height: 100%;
+		padding: 70px;
+		background: rgba(0, 0, 0, 0.15);
+	}
+	.wrapper-1000 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.one {
+		padding-right: 30px;
+		p {
+			font-size: 25px;
+			color: white;
+			max-width: 400px;
+			line-height: 1.5em;
+		}
+	}
+	.two {
+		width: 100%;
+		max-width: 400px;
+		form {
+			display: flex;
+			width: 100%;
+			flex-direction: column;
+			.form-group {
+				flex: 1;
+			}
+			button {
+				padding: 10px;
+				font-size: 14px;
+				border-radius: 0 4px 4px 0;
+			}
+		}
+	}
+	.subscribe-email {
+		border: none;
+		padding: 10px;
+		border-radius: 4px 0 0 4px;
+		background: rgba(255, 255, 255, 0.65);
+		color: $color-text;
+		font-size: 14px;
+		width: 100%;
+	}
+	.gh-subscribe-rss {
+		display: block;
+		padding-top: 11px;
+		font-size: 14px;
+		color: white;
+		a {
+			color: white;
+			border-bottom: 1px solid white;
+		}
+	}
+}
+
+.signup-form{
+    .signup-box{
+        display: flex;
+        overflow: hidden;
+		width: 100%;
+		height: 37px;
+        input[type="email"]{
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.7);;
+            padding: 10px;
+            height: 100%;
+            width: 100%;
+            border-radius: 4px 0 0 4px;
+			font-size: 14px;
+			&::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+				color: #666;
+				opacity: 1; /* Firefox */
+			}
+			  
+			&:-ms-input-placeholder { /* Internet Explorer 10-11 */
+				color: #666;
+			}
+			  
+			&::-ms-input-placeholder { /* Microsoft Edge */
+				color: #666;
+			}
+        }
+        button{
+            margin: 0;
+            height: 100%;
+            color: $color-text;
+            background: white;
+            border-radius: 0;
+            display: block;
+            padding: 10px;
+            border-radius: 0 4px 4px 0;
+            display: flex;
+            align-items: center;
+			justify-content: center;
+			font-size: 14px;
+        }
+        .button-loader{
+            display: none;
+        }
+    }
+
+    .signin-link{
+        margin: 0 0 30px;
+        font-size: 14px;
+    }
+
+    .message-success, .message-error{
+		display: none;
+		margin-top: 10px;
+    }
+}
+
+.signup-form.loading{
+    .signup-box{
+        .button-content{
+            display: none;
+        }
+        .button-loader{
+            display: block;
+        }
+    }
+}
+
+.signup-form.error{
+    .message-error{
+        display: block;
+        color: red;
+        font-size: 14px;
+    }
+}
+
+.signup-form.success{
+    .message-success{
+        display: block;
+        color: #4CAF50;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 850px) {
+	.gh-subscribe {
+		.overlay {
+			padding: 50px 0px;
+		}
+		.one {
+			padding-right: 0;
+			padding-bottom: 20px;
+			p {
+				font-size: 23px;
+				text-align: center;
+			}
+		}
+		.gh-subscribe-rss {
+			text-align: center;
+		}
+	}
+}

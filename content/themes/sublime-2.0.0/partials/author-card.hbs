@@ -1,0 +1,85 @@
+<div class="author-card">
+	<!-- Avatar -->
+    <div class="profile-image">
+    	<a href="{{url}}">
+            {{#if profile_image}}
+                <img class="author-profile-image" src="{{img_url profile_image size="s"}}" alt="{{name}}" />
+            {{else}}
+                <div class="author-profile-image">{{> "icons/avatar"}}</div>
+            {{/if}}
+    	</a>
+    </div>
+    
+    <!-- About -->
+    <div class="details">
+        <div class="name"><a href="{{url}}">{{name}}</a></div>
+        
+        {{#if bio}}
+            <div class="bio">{{bio}}</div>
+        {{/if}}
+        
+        <div class="meta">
+            <!-- Social Media Links -->
+            <div class="social-links">
+                {{!-- Twitter --}}
+                {{#if twitter}}
+                    <a class="link-with-svg" href="{{twitter_url}}" target="_blank" rel="noopener">
+                        <span class="link-svg">
+                            {{> "icons/twitter"}}
+                        </span>
+                        <span class="link-text">Twitter</span>
+                    </a>
+                {{/if}}
+
+                {{!-- Facebook --}}
+                {{#if facebook}}
+                    <a class="link-with-svg" href="{{facebook_url}}" target="_blank" rel="noopener">
+                        <span class="link-svg">
+                            {{> "icons/facebook"}}
+                        </span>
+                        <span class="link-text">Facebook</span>
+                    </a>
+                {{/if}}
+                                
+                {{!-- RSS --}} 
+                <a class="link-with-svg" href="https://feedly.com/i/subscription/feed/{{url absolute="true"}}rss/" target="_blank" rel="noopener">
+                    <span class="link-svg rss">
+                        {{> "icons/rss"}}
+                    </span>
+                    <span class="link-text">RSS</span>
+                </a>
+            </div>
+
+            
+            {{!-- Location --}}
+            {{#if location}}
+                <div class="separator">/</div>
+                
+                <div class="location">
+                    <span class="svg-container">
+                        {{> "icons/location"}}
+                    </span>
+                    <span class="text">
+                    {{location}}
+                    </span>
+                </div>
+            {{/if}}
+
+
+            {{!-- Website --}}      
+            {{#if website}}
+                <div class="separator">/</div>
+                
+                <div class="website">
+                    <span class="svg-container">
+                        {{> "icons/link"}}
+                    </span>
+                    <span class="text">
+                        <a class="" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
+                    </span>
+                </div>
+            {{/if}}
+        </div>
+        <div class="read-more"><a href="{{url}}">More posts</a> by {{name}}.</div>
+    </div>
+</div>

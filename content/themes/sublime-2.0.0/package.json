@@ -1,0 +1,75 @@
+{
+    "name": "sublime",
+    "description": "A fast, minimal, elegant theme for the ghost platform",
+    "demo": "https://sublime.stylesheets.dev",
+    "homepage": "https://stylesheets.dev",
+    "version": "2.0.0",
+    "engines": {
+        "ghost": ">=2.0.0",
+        "ghost-api": "v2"
+    },
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.png"
+    },
+    "scripts": {
+        "dev": "gulp",
+        "build": "gulp build"
+    },
+    "author": {
+        "name": "Stylesheets Dev",
+        "email": "stylesheets.dev@gmail.com",
+        "url": "https://stylesheets.dev"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Magazine Layouts",
+            "Elegant Style"
+        ]
+    },
+    "keywords": [
+        "ghost-theme",
+        "theme",
+        "minimal",
+        "magazine",
+        "blogging"
+    ],
+    "devDependencies": {
+        "gulp-zip": "4.0.0",
+        "babel-core": "^6.24.1",
+        "babel-loader": "^7.0.0",
+        "babel-preset-es2015": "^6.24.1",
+        "del": "^2.2.2",
+        "gulp": "^3.9.1",
+        "gulp-autoprefixer": "^4.0.0",
+        "gulp-babel": "^6.1.2",
+        "gulp-cssnano": "^2.1.2",
+        "gulp-sass": "^3.1.0",
+        "gulp-uglify": "^3.0.0",
+        "run-sequence": "^1.2.2"
+    },
+    "config": {
+        "posts_per_page": 15,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1000
+            },
+            "xl": {
+                "width": 2000
+            }
+        }
+    }
+}

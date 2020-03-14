@@ -1,0 +1,137 @@
+.drawer-handle {
+	position: relative;
+	z-index: 501;
+	width: 30px;
+	height: 35px;
+	cursor: pointer;
+	margin: 0 20px -10px 0;
+	span {
+		position: absolute;
+		cursor: pointer;
+		height: 1px;
+		width: 30px;
+		background: $color-text;
+		position: absolute;
+		display: block;
+		content: "";
+		top: 0px;
+
+		&:before,
+		&:after {
+			cursor: pointer;
+			height: 1px;
+			width: 30px;
+			background: $color-text;
+			position: absolute;
+			display: block;
+			content: "";
+			top: 0px;
+		}
+	}
+
+	span.second {
+		top: 7px;
+	}
+
+	span {
+		-webkit-transition: all 0.2s ease;
+		-moz-transition: all 0.2s ease;
+		-ms-transition: all 0.2s ease;
+		-o-transition: all 0.2s ease;
+		transition: all 0.2s ease;
+
+		&:after {
+			-webkit-transition: all 0.2s ease;
+			-moz-transition: all 0.2s ease;
+			-ms-transition: all 0.2s ease;
+			-o-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+			top: 14px;
+		}
+
+		&:before {
+			-webkit-transition: all 0.2s ease;
+			-moz-transition: all 0.2s ease;
+			-ms-transition: all 0.2s ease;
+			-o-transition: all 0.2s ease;
+			transition: all 0.2s ease;
+			top: 7px;
+		}
+	}
+}
+
+.drawer-handle.open {
+	span {
+		transform: rotate(45deg);
+		top: 10px;
+		background: $color-text;
+
+		&:before {
+			background-color: transparent;
+		}
+
+		&:after {
+			background: $color-text;
+			transform: rotate(90deg);
+			top: 0px;
+		}
+	}
+}
+
+.drawer-menu {
+	position: fixed;
+	z-index: 101;
+	transform: translateX(-150%);
+	width: 30%;
+	padding-top: 40px;
+	transition: 400ms;
+	text-align: left;
+	font-family: $font-primary;
+	font-weight: 400;
+	background: white;
+	border-bottom: 5px solid black;
+	top: 0;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	width: 30vw;
+	box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
+	visibility: hidden;
+	ul.nav {
+		list-style: none;
+		padding: 0;
+	}
+	a {
+		color: $color-text;
+		letter-spacing: 0.1em;
+		display: block;
+		padding: 18px 20px;
+		text-transform: uppercase;
+		font-size: 12px;
+		&:hover {
+			color: $color-primary;
+		}
+	}
+	.nav-current a {
+		border-left: 2px solid #8a8a8a;
+		background: #f3f3f3;
+	}
+	.nav-dropdown-menu {
+		left: 15px;
+		.nav-dropdown-menu-wrapper::before {
+			left: 20px;
+		}
+	}
+
+	&.open {
+		transform: translateX(-0%);
+		visibility: visible;
+	}
+}
+
+@media (max-width: 750px) {
+	.drawer-menu {
+		width: 70%;
+		width: 70vw;
+	}
+}

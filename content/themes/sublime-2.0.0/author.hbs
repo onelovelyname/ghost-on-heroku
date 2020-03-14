@@ -1,0 +1,139 @@
+{{!< default}}
+
+{{!-- Site Header --}}
+{{> "header"}}
+
+{{#author}}
+<section class="author-template-header">
+    <div class="wrapper-1000">
+        <!-- Profile Image -->
+        {{#if profile_image}}
+            <figure class="author-template__avatar" style="background-image: url({{profile_image}})">
+            </figure>
+        {{/if}}
+
+        <section class="author-template__details">
+            <!-- Name -->
+            <h1 class="author-template__name">{{name}}</h1>
+
+            <!-- Bio -->
+            <p class="author-template__bio">{{bio}}</p>
+
+            <!-- links -->
+            <div class="author-template__meta">
+                <!-- Social Media Links -->
+                <div class="author-template__social-media">
+                    {{!-- Twitter --}}
+                    {{#if twitter}}
+                        <a class="link-with-svg" href="{{twitter_url}}" target="_blank" rel="noopener">
+                            <span class="link-svg">
+                                {{> "icons/twitter"}}
+                            </span>
+                            <span class="link-text">Twitter</span>
+                        </a>
+                    {{/if}}
+
+                    {{!-- Facebook --}}
+                    {{#if facebook}}
+                        <a class="link-with-svg" href="{{facebook_url}}" target="_blank" rel="noopener">
+                            <span class="link-svg">
+                                {{> "icons/facebook"}}
+                            </span>
+                            <span class="link-text">Facebook</span>
+                        </a>
+                    {{/if}}
+                                    
+                    {{!-- RSS --}} 
+                    <a class="link-with-svg" href="https://feedly.com/i/subscription/feed/{{url absolute="true"}}rss/" target="_blank" rel="noopener">
+                        <span class="link-svg rss">
+                            {{> "icons/rss"}}
+                        </span>
+                        <span class="link-text">RSS</span>
+                    </a>
+                </div>
+                
+                {{!-- Location --}}
+                {{#if location}}
+                    <div class="author-template__separator">
+                        /
+                    </div>
+                    <div class="author-template__location">
+                        <span class="svg-container">
+                            {{> "icons/location"}}
+                        </span>
+                        <span class="text">
+                        {{location}}
+                        </span>
+                    </div>
+                {{/if}}
+
+                {{!-- Website --}}      
+                {{#if website}}
+                    <div class="author-template__separator">
+                        /
+                    </div>
+                    <div class="author-template__website">
+                        <span class="svg-container">
+                            {{> "icons/link"}}
+                        </span>
+                        <span class="text">
+                            <a class="" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
+                        </span>
+                    </div>
+                {{/if}}
+            </div>
+        </section>
+    </div>
+</section>    
+{{/author}}
+
+<!-- Site Main Content -->
+<div class="site-content author-template-content">
+    <div class="wrapper-1000 wrapper-1000--post-feed">
+        <div class="post-feed">
+            <!-- Featured Posts -->
+            {{#get "posts" filter="featured:true" limit="all" include="tags,authors" as |featured|}}
+                {{#foreach featured}}
+                    {{> "post-card"}}
+                {{/foreach}}
+            {{/get}}
+
+            <!-- Normal posts -->
+            {{#foreach posts}}
+                {{#unless featured}}
+                    {{> "post-card"}}
+                {{/unless}}
+            {{/foreach}}
+        </div>
+
+        <div class="load-more-posts">
+            <button role="button" class="button-type-1" onclick="loadMorePosts(event)">
+                <div>Load More</div>
+            </button>
+            <div class="lds-ripple"><div></div><div></div></div>
+            <div class="message">Reached End</div>
+        </div>
+
+        {{!-- {{pagination}} --}}
+    </div>
+</div>
+
+{{> "email-subscribe"}}
+
+{{> "footer"}}
+
+{{> "floating-navigation"}}
+
+{{#contentFor "scripts"}}
+<script type="text/javascript">
+    var current_page = "author-view";
+
+    $(window).on("scroll", function() {
+        if ($(window).scrollTop() > 50) {
+            $(".floating-navigation").addClass("active");
+        } else {
+            $(".floating-navigation").removeClass("active");
+        }
+    });
+</script>
+{{/contentFor}}

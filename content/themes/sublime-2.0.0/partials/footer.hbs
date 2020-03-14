@@ -1,0 +1,36 @@
+<footer class="site-footer">
+    <div class="wrapper-1000">
+        <!-- Footer bottom section -->
+        <div class="footer-bottom">
+            <div class="footer-left">
+                <!-- Copyright -->
+                <div class="copyright">
+                    &copy; {{date format="YYYY"}} {{@site.title}} &middot; Published with <a href="https://ghost.org">Ghost</a>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <div class="social-icons">
+                    {{#if @site.twitter}}
+                        <!-- Twitter -->
+                        <a href="{{twitter_url}}" class="" target="_blank">
+                            {{> "icons/twitter"}}
+                        </a>
+                    {{/if}}
+                    
+                    {{#if @site.facebook}}
+                        <!-- Facebook -->
+                        <a href="{{facebook_url}}" class="" target="_blank">
+                            {{> "icons/facebook"}}
+                        </a>
+                    {{/if}}
+                    
+                    <!-- RSS -->
+                    <a href="http://cloud.feedly.com/#subscription/feed/{{@site.url}}/rss/" target="_blank">
+                        {{> "icons/rss"}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

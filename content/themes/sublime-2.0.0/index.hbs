@@ -1,0 +1,73 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<!-- Home Page Header -->
+<header class="home-page-header {{#unless @site.cover_image}}--no-cover-image{{/unless}}" style="background-image: url({{@site.cover_image}})">
+    <div class="overlay">
+        <div class="wrapper-1000">
+            <div class="home-page-header__top">
+                {{#if @site.logo}}
+                    <img class="logo" alt="site logo" src="{{@site.logo}}">
+                {{else}}
+                    <h1 class="title">
+                        <a href="{{@site.url}}">{{@site.title}}</a>
+                    </h1>
+                    <p class="description">{{@site.description}}</p>
+                {{/if}}
+            </div>
+
+            <div class="home-page-header__bottom">
+                <div class="home-page-header__navigation">
+                    {{navigation}}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Site Main Content -->
+<div class="site-content home-page-content">
+    <div class="wrapper-1000 wrapper-1000--post-feed">
+        <div class="post-feed">
+            <!-- Normal posts -->
+            {{#foreach posts}}
+                {{#unless featured}}
+                    {{> "post-card"}}
+                {{/unless}}
+            {{/foreach}}
+        </div>
+
+        <div class="load-more-posts">
+            <button role="button" class="button-type-1" onclick="loadMorePosts(event)">
+                <div>Load More</div>
+            </button>
+            <div class="lds-ripple"><div></div><div></div></div>
+            <div class="message">Reached End</div>
+        </div>
+
+        {{!-- {{pagination}} --}}
+    </div>
+</div>
+
+{{> "email-subscribe"}}
+
+<!-- Site Footer -->
+{{> "footer" }}
+
+{{> "floating-navigation"}}
+
+{{#contentFor "scripts"}}
+<!-- Set's the current_page variable, which is used for adjusting the size of the post-cards -->
+<script type="text/javascript">
+    var current_page = "home-view";
+
+    $(window).on("scroll", function() {
+        if ($(window).scrollTop() > $(window).height()) {
+            $(".floating-navigation").addClass("active");
+        } else {
+            $(".floating-navigation").removeClass("active");
+        }
+    });
+</script>
+{{/contentFor}}

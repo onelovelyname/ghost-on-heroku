@@ -1,0 +1,19 @@
+<div class="floating-navigation">
+	<div class="floating-navigation__desktop">
+		{{navigation}}
+	</div>
+	<div class="floating-navigation__mobile">
+		<div class="floating-navigation__blog-title">
+			<a href="{{@site.url}}">{{@site.title}}</a>
+		</div>
+		{{#if @site.navigation}}
+			<!-- Drawer -->
+			<div class="drawer">
+				<div class="drawer-handle" onclick="openDrawer()">
+					<span class="first"></span>
+					<span class="second"></span>
+				</div>
+			</div>
+		{{/if}}
+	</div>
+</div>

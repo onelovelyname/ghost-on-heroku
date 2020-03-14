@@ -1,0 +1,32 @@
+<div class="post-sharing-icons">
+	<header>Share</header>
+	<div class="post-sharing-icons__wrapper">
+		{{!-- Twitter --}}
+	    <a class="post-sharing-icon" href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+	        onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+	        <span class="icon">{{> "icons/twitter"}}</span>
+	        <span class="title">Twitter</span>
+	    </a>
+
+	    {{!-- Facebook --}}
+	    <a class="post-sharing-icon " href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+	        onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+	        <span class="icon">{{> "icons/facebook"}}</span>
+	        <span class="title">Facebook</span>
+	    </a>
+
+	    {{!-- Pinterest --}}
+	    <a class="post-sharing-icon " href="http://pinterest.com/pin/create/link/?url={{url absolute="true"}}"
+	        onclick="window.open(this.href, 'share-pinterest','width=580,height=296');return false;">
+	        <span class="icon">{{> "icons/pinterest"}}</span>
+	        <span class="title">Pinterest</span>
+	    </a>
+
+	    {{!-- Reddit --}}
+	    <a class="post-sharing-icon " href="https://www.reddit.com/submit?url={{url absolute="true"}}%2F&title={{encode title}}" 
+	    onclick="window.open(this.href, 'share-reddit', 'width=550,height=235');return false;">
+	        <span class="icon">{{> "icons/reddit"}}</span>
+	        <span class="title">Reddit</span>
+	    </a>
+	</div>
+</div>

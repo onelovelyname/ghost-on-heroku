@@ -1,0 +1,22 @@
+<!-- Loop through the navigation items -->
+{{#foreach navigation}}
+	<div class="menu-item-wrapper">
+		<a href="{{url absolute="true"}}" class="menu-item nav-{{slug}}{{#if current}} active{{/if}}">{{label}}</a>
+	</div>
+{{/foreach}}
+<!-- End the loop -->
+
+{{!-- Your Custom Dropdown Menu --}}
+{{!-- 
+<div class="menu-item-wrapper menu-item-wrapper--dropdown">
+	<a href="https://stylesheets.dev" class="menu-item">Menu Title</a>
+
+	<div class="nav-dropdown-menu">
+		<div class="nav-dropdown-menu-wrapper">
+            <a href="/">Menu Item 1</a>
+            <a href="/">Menu Item 2</a>
+            <a href="/">Menu Item 3</a>
+		</div>
+	</div>
+</div> 
+--}}

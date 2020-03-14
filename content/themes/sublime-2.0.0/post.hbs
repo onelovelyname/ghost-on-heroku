@@ -1,0 +1,220 @@
+{{!< default}}
+
+{{#post}}
+
+{{!-- Reading Progress --}}
+<progress id="reading-progress" class="progress" value="0">
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+</progress>
+
+{{!-- Site Header --}}
+{{> "header"}}
+
+{{!-- Main Content --}}
+<div class="site-content">
+    <div class="wrapper-700">
+        <article class="{{post_class}} {{#unless feature_image}}no-feature-image{{/unless}}">
+            <header>
+            	{{!-- Feature Image --}}
+            	{{#if feature_image}}
+            		<img alt="{{title}}" src="{{feature_image}}">
+            	{{/if}}
+
+                <!-- Title --> 
+                <h1 class="post-title">{{title}}</h1>
+
+                <!-- Time -->
+		        <div class="date">
+		        	<time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
+		        </div>
+            </header>
+
+            <!-- Post content -->
+            <section class="post-full-content">
+	            {{content}}
+	        </section>
+        </article>
+
+        <div class="post-end-ellipses"></div>
+
+	    <!-- Authors -->
+        <section class="author-details">
+        	{{#foreach authors}}
+	            {{> "author-card"}}
+		    {{/foreach}}
+        </section>
+
+        <!-- Next/Prev post links -->
+        <section class="next-prev-posts">
+        	<!-- Next Post -->
+	        {{#next_post}}
+	            <div class="newer-post">
+	                <a class="button-with-icon" href="{{url}}">
+	                    <span class="link-svg">
+	                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+	                    </span>
+	                    <span class="link-text">Newer</span>
+	                </a>
+	            </div>
+	        {{/next_post}}
+
+	        <!-- Previous Post -->
+	        {{#prev_post}}
+	            <div class="older-post">
+	                <a class="button-with-icon" href="{{url}}">
+	                    <span class="link-text">Older</span>
+	                    <span class="link-svg">
+	                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+	                    </span>
+	                </a>
+	            </div>
+	        {{/prev_post}}
+        </section>
+
+        <!-- Comments -->
+        {{!-- 
+	        <section class="post-comments">
+	        	<div id="disqus_thread"></div>
+		        <script>
+		            var disqus_config = function () {
+		                this.page.url = '{{url absolute="true"}}';
+		                this.page.identifier = 'ghost-{{comment_id}}';
+		            };
+		            (function() {
+		                var d = document, s = d.createElement('script');
+		                s.src = 'https://test-apkdzgmqhj.disqus.com/embed.js';
+		                s.setAttribute('data-timestamp', +new Date());
+		                (d.head || d.body).appendChild(s);
+		            })();
+		        </script>
+	        </section> 
+        --}}
+    </div>
+</div>
+
+{{/post}}
+
+{{> "email-subscribe"}}
+
+{{> "sharing-icons"}} 
+
+{{> "footer"}}
+
+{{> "floating-navigation"}}
+
+{{#contentFor "scripts"}}
+	<!-- Fitvids -->
+	<script type="text/javascript" src="{{asset "built/js/jquery.fitvids.js"}}"></script>
+
+	<!-- Highlight Share Scripts -->
+	<link rel="stylesheet" type="text/css" href="{{asset "highlight-share/highlight-share.css"}}">
+	<script type="text/javascript" src="{{asset "highlight-share/highlight-share.js"}}"></script>
+	<script type="text/javascript" src="{{asset "highlight-share/sharers/twitter.js"}}"></script>
+	<script type="text/javascript" src="{{asset "highlight-share/sharers/facebook.js"}}"></script>
+	<script type="text/javascript" src="{{asset "highlight-share/sharers/linked-in.js"}}"></script>
+	<!-- Custom styles for highlight share popover -->
+	<style type="text/css">
+		.highlight-share-popover ul{
+			background: white;
+			color: #111;
+		}
+		.highlight-share-popover:before{
+			border-color: white transparent;
+		}
+		.highlight-share-popover ul li a:hover{
+			background: hsla(0, 0%, 63%, 0.25);
+		}
+	</style>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+		    // Start fitVids
+		    var $postContent = $(".post-full-content");
+		    $postContent.fitVids();
+		    // End fitVids
+
+		    // ------------------------------------------------
+		    // Reading Progress  
+		    var progressBar = document.querySelector('#reading-progress');
+		    var lastScrollY = window.scrollY;
+		    var lastWindowHeight = window.innerHeight;
+		    var lastDocumentHeight = $(document).height();
+		    var ticking = false;
+
+		    function onScroll() {
+		        lastScrollY = window.scrollY;
+		        requestTick();
+		    }
+
+		    function onResize() {
+		        lastWindowHeight = window.innerHeight;
+		        lastDocumentHeight = $(document).height();
+		        requestTick();
+		    }
+
+		    function requestTick() {
+		        if (!ticking) {
+		            requestAnimationFrame(update);
+		        }
+		        ticking = true;
+		    }
+
+		    function update() {
+		        var trigger = window.scrollY;
+		        var triggerOffset = 35;
+		        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+		        progressBar.setAttribute('max', progressMax);
+		        progressBar.setAttribute('value', lastScrollY);
+
+		        ticking = false;
+		    }
+
+		    window.addEventListener('scroll', onScroll, {passive: true});
+		    window.addEventListener('resize', onResize, false);
+
+		    update();
+		    // Ends reading progress 
+		    // ------------------------------------------------------
+		    
+		    // Init Highlight Share
+		    var selectionShare = HighlightShare({
+			    selector: '.post-full-content',
+			    sharers: [HighlightShareViaTwitter, HighlightShareViaFacebook, HighlightShareViaLinkedIn]
+			});
+			selectionShare.init(); 
+
+			// Set up gallery if present in the article
+		    var images = document.querySelectorAll('.kg-gallery-image img');
+		    images.forEach(function (image) {
+		        var container = image.closest('.kg-gallery-image');
+		        var width = image.attributes.width.value;
+		        var height = image.attributes.height.value;
+		        var ratio = width / height;
+		        container.style.flex = ratio + ' 1 0%';
+		    });	
+
+		    // hide/show post sharing buttons at the bottom right corner
+		    $(window).on("scroll", function() {
+                if ($(window).scrollTop() > 500) {
+                    // $(".post-sharing-icons").addClass("visible");
+                    $(".post-sharing-icons").fadeIn("fast");
+                } else {
+                    // $(".post-sharing-icons").removeClass("visible");
+                    $('.post-sharing-icons').fadeOut("fast");
+                }
+            });	
+
+		    // make floating navigation visible after scrolled by atleast 100px
+            $(window).on("scroll", function() {
+                if ($(window).scrollTop() > 100) {
+                    $(".floating-navigation").addClass("active");
+                } else {
+                    $(".floating-navigation").removeClass("active");
+                }
+            });
+		});
+	</script>
+{{/contentFor}}

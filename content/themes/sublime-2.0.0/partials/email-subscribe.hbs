@@ -1,0 +1,26 @@
+{{#if @labs.members}}
+    <section class="gh-subscribe" style="background-image: url({{@site.cover_image}})">
+        <div class="overlay">
+            <div class="wrapper-1000">
+                <div class="one">
+                    <p>Get the latest posts delivered right to your inbox.</p>
+                </div>
+
+                <div class="two">
+                    <form class="signup-form" data-members-form="subscribe">
+                        <div class="signup-box">
+                            <input data-members-email type="email" placeholder="Type your email..." required="true" autocomplete="false" />
+                            <button class="button primary" type="submit">
+                                <span class="button-content">Subscribe</span>
+                                <span class="button-loader">Loading..</span>
+                            </button>
+                        </div>
+                        <div class="message-success"><strong>Great!</strong> Check your inbox and click the link to confirm your subscription</div>
+                        <div class="message-error">Sorry, an error occurred. Try again later.</div>
+                    </form>
+                    <span class="gh-subscribe-rss">Or subscribe <a href="http://cloud.feedly.com/#subscription/feed/{{@site.url}}/rss/">via RSS</a> with Feedly!</span>
+                </div>
+            </div>
+        </div>
+    </section>
+ {{/if}}
